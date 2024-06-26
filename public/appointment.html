@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Todo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-1/2">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Add new Appointment</h1>
+        <form id="patient" action="/submit" method="POST">
+            <div class="mb-4">
+                <label for="id" class="block text-gray-700">Patient ID</label>
+                <input type="text" id="patientId" name="patientId" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="title" class="block text-gray-700">Patient Name</label>
+                <input type="text" id="patientName" name="patientName" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-gray-700">Doctor Name</label>
+                <input type="text" id="doctorName" name="doctorName" rows="5" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="date" class="block text-gray-700">Date</label>
+                <input type="text" id="date" name="date" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="time" class="block text-gray-700">Time</label>
+                <input type="text" id="time" name="time" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

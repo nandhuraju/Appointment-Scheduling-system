@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Appointment Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-3/4">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Update Appointment Details</h2>
+        <form onsubmit="updateAppointment(); return false;">
+            <div class="mb-4">
+                <label for="updatePatientName" class="block text-gray-700">Patient Name</label>
+                <input type="text" id="updatePatientName" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="updateDoctorName" class="block text-gray-700">Doctor Name</label>
+                <input type="text" id="updateDoctorName" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="updateDate" class="block text-gray-700">Date</label>
+                <input type="text" id="updateDate" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+            <div class="mb-4">
+                <label for="updateTime" class="block text-gray-700">Time</label>
+                <input type="text" id="updateTime" class="w-full border-2 border-gray-300 p-2 rounded mt-2" required>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+        </form>
+    </div>
+    <script>
+        async function updateAppointment() {
+            const id = window.location.pathname.split('/').pop();
+            const patientName = document.getElementById('updatePatientName').value;
+            const doctorName = document.getElementById('updateDoctorName').value;
+            const date = document.getElementById('updateDate').value;
+            const time = document.getElementById('updateTime').value;
+            
+            try {
+                const response = await fetch(`/api/patient/${id}`, {
+                    method: 'PUT',
+                    headers: {'Content-Type': 'application/json', },
+                    body: JSON.stringify({ patientName, doctorName,date,time }),
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to update appointment details');
+                }
+                alert('Appointment details updated successfully');
+                window.location.href = `/patient/${id}`;
+            } catch (error) {
+                console.error('Error updating appointment details:', error);
+                alert('Failed to update appointment details');
+            }
+        }
+    </script>
+</body>
+</html>
